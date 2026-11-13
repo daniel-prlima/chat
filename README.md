@@ -2,14 +2,26 @@
 
 Assistente educacional para aprender conceitos sobre investimentos no Brasil. Este projeto está sendo desenvolvido passo a passo como parte das aulas.
 
+## Links do projeto
+
+| O quê | Link |
+|---|---|
+| Chat publicado (Streamlit Cloud) | COLE_AQUI_O_LINK_DO_APP_NO_STREAMLIT |
+| API publicada (Render) | COLE_AQUI_O_LINK_DA_API_NO_RENDER |
+| Documentação da API | COLE_AQUI_O_LINK_DA_API_NO_RENDER/docs |
+
+No plano gratuito, a API "dorme" depois de um tempo sem uso: a primeira pergunta pode demorar cerca de 1 minuto.
+
 ## Etapa atual
 
-Na Aula 1, o projeto tem uma conversa inicial pelo terminal. O FinBot responde a perguntas gerais sobre investimentos e mantém o histórico durante a conversa.
+Na Aula 3, o FinBot utiliza LangGraph com memória de curto prazo (`MongoDBSaver` / checkpointer), memória de longo prazo (perfil do usuário no MongoDB Atlas), histórico de conversas na barra lateral do Streamlit e prompts versionados no Langfuse.
 
 ## Requisitos
 
-- Python 3.12
+- Python 3.12+
 - Uma chave de API da Groq
+- Conta no Langfuse
+- Cluster gratuito no MongoDB Atlas
 
 ## Como configurar no Windows
 
@@ -19,20 +31,26 @@ Abra o projeto no VS Code e, no terminal integrado, confirme que está na pasta 
 py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements-dev.txt
+pip install -r frontend/requirements.txt
 Copy-Item .env.example .env
 ```
 
-Depois, abra o arquivo `.env` no VS Code e preencha `GROQ_API_KEY` com sua chave da Groq. Não compartilhe essa chave e não a coloque neste README.
+Depois, abra o arquivo `.env` no VS Code e preencha `GROQ_API_KEY`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` e `MONGO_URL`. Não compartilhe essas chaves e não as coloque neste README.
 
 ## Como executar
 
-Com o ambiente virtual ativado e o `.env` configurado, rode no terminal integrado:
+Com o ambiente virtual ativado e o `.env` configurado:
 
 ```powershell
-python -m scripts.chat_terminal
-```
+# Publicar prompts no Langfuse
+python -m scripts.publicar_prompts
 
-Digite `sair` para encerrar a conversa.
+# Iniciar a API FastAPI
+uvicorn app.main:app --reload
+
+# Em outro terminal (com .venv ativo), iniciar o front em Streamlit
+streamlit run frontend/streamlit_app.py
+```
 
 ## Como executar os testes
 
@@ -48,4 +66,4 @@ O arquivo `.env` contém chaves privadas e não deve ser enviado ao GitHub. O ar
 
 ## Próximas etapas
 
-Este projeto será ampliado nas aulas seguintes. O link do aplicativo publicado será acrescentado aqui quando ele estiver disponível.
+Este projeto será ampliado nas aulas seguintes com ferramentas de mercado (Aula 4), RAG (Aula 5) e multiagentes (Aula 6).
