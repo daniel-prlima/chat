@@ -6,9 +6,9 @@ Assistente educacional para aprender conceitos sobre investimentos no Brasil. Es
 
 | O quê | Link |
 |---|---|
-| Chat publicado (Streamlit Cloud) | COLE_AQUI_O_LINK_DO_APP_NO_STREAMLIT |
-| API publicada (Render) | COLE_AQUI_O_LINK_DA_API_NO_RENDER |
-| Documentação da API | COLE_AQUI_O_LINK_DA_API_NO_RENDER/docs |
+| Chat publicado (Streamlit Cloud) | https://finbotdino.streamlit.app |
+| API publicada (Render) | https://finbot-api-pyrb.onrender.com |
+| Documentação da API | https://finbot-api-pyrb.onrender.com/docs |
 
 No plano gratuito, a API "dorme" depois de um tempo sem uso: a primeira pergunta pode demorar cerca de 1 minuto.
 
